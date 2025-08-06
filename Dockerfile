@@ -15,3 +15,6 @@ RUN composer install --no-dev --optimize-autoloader
 EXPOSE 8000
 
 CMD ["sh", "-c", "php artisan serve --host=0.0.0.0 --port=${PORT:-8000}"]
+
+# Establece el DocumentRoot de Apache en /var/www/html/public
+RUN sed -i 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/000-default.conf
